@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CarbonSense – Know your own carbon footprint</title>
+<meta name="description" content="Estimate your personal carbon footprint from everyday habits, using a machine learning model.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;700&family=Young+Serif&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="nav" id="top">
+  <a class="brand" href="#top">Carbon<span>Sense</span></a>
+  <button class="burger" aria-label="Open menu" aria-expanded="false" aria-controls="menu"><i></i><i></i></button>
+  <nav id="menu">
+    <a href="#top">Home</a>
+    <a href="#about">About</a>
+    <a href="#how">How It Works</a>
+    <a href="#calculator">Calculator</a>
+    <a href="#insights">Insights</a>
+  </nav>
+</header>
+
+<main>
+<section class="hero">
+  <div class="hero-text">
+    <p class="kicker">A college project on personal emissions</p>
+    <h1>Your footprint isn't a mystery. It's your Tuesday.</h1>
+    <p class="lede">The commute, the lunch, the AC running overnight. CarbonSense takes the habits you already have and estimates what they add up to in a year.</p>
+    <div class="actions">
+      <a class="btn" href="#calculator">Estimate mine</a>
+      <a class="textlink" href="#how">See how it works</a>
+    </div>
+  </div>
+  <aside class="ledger" aria-label="Example day of emissions">
+    <h2>One ordinary day, in kg of CO₂</h2>
+    <ol id="ledger">
+      <li><span>Auto to college, 8 km</span><b>0.6</b></li>
+      <li><span>Dal-chawal lunch</span><b>1.1</b></li>
+      <li><span>Room fan and lights, 6 hrs</span><b>1.4</b></li>
+      <li><span>Chicken biryani dinner</span><b>2.3</b></li>
+      <li><span>AC overnight, 5 hrs</span><b>3.9</b></li>
+    </ol>
+    <p class="total"><span>Day total</span><b id="ledger-total">9.3</b></p>
+    <small>Rounded, illustrative numbers. Your own estimate comes from the model below.</small>
+  </aside>
+</section>
+
+<div class="canopy" role="img" aria-label="Looking up through a forest canopy"></div>
+
+<section class="about" id="about">
+  <h2>Most people have never seen their own number.</h2>
+  <div class="cols">
+    <p>Carbon calculators usually ask for utility bills and flight logs. Students and first-time earners rarely have either. So the number stays abstract, and so does the habit change that should follow it.</p>
+    <p>CarbonSense asks simple questions about how you travel, eat and use power. A regression model trained on a public lifestyle dataset turns those answers into a yearly estimate, then shows which habits weigh the most.</p>
+  </div>
+</section>
+
+<section class="how" id="how">
+  <h2>How it works</h2>
+  <ol class="steps">
+    <li><h3>You answer a few questions</h3><p>Travel, food, electricity. No bills, no sign-up.</p></li>
+    <li><h3>Answers are cleaned and encoded</h3><p>The same preprocessing used while training, so the model reads your input the way it learned.</p></li>
+    <li><h3>The model predicts</h3><p>A trained regression model estimates your emissions from patterns in the dataset.</p></li>
+    <li><h3>You see what drives it</h3><p>Your yearly total, compared with a typical figure, and the habits that matter most.</p></li>
+  </ol>
+</section>
+
+<section class="calc" id="calculator">
+  <div class="calc-intro">
+    <h2>Try a quick estimate</h2>
+    <p>This preview uses rough average factors so you can see the flow. Once the ML model is trained, it will replace this formula.</p>
+  </div>
+  <form id="calc-form" novalidate>
+    <label>Daily travel (km)
+      <input type="number" id="km" min="0" max="500" value="10">
+    </label>
+    <label>Main way of travelling
+      <select id="mode">
+        <option value="0.17">Car</option>
+        <option value="0.07">Two-wheeler</option>
+        <option value="0.09">Bus</option>
+        <option value="0.03">Metro or train</option>
+        <option value="0">Walk or cycle</option>
+      </select>
+    </label>
+    <label>Electricity use (units per month)
+      <input type="number" id="kwh" min="0" max="3000" value="150">
+    </label>
+    <label>What you usually eat
+      <select id="diet">
+        <option value="1.5">Vegetarian</option>
+        <option value="2.5" selected>Mixed</option>
+        <option value="3.3">Non-veg most days</option>
+      </select>
+    </label>
+    <button class="btn" type="submit">Show my estimate</button>
+  </form>
+  <div class="result" id="result" aria-live="polite">
+    <p class="empty">Fill in the form and your yearly estimate appears here.</p>
+  </div>
+</section>
+
+<section class="insights" id="insights">
+  <h2>What the numbers usually show</h2>
+  <article><h3>Cooling and heating often outweigh the commute.</h3><p>Hours of AC use can add more than a daily bus ride. Raising the thermostat by a degree or two is one of the cheapest cuts.</p></article>
+  <article><h3>Diet moves the total more than most people expect.</h3><p>Swapping a few meat-heavy meals a week for plant-based ones changes the yearly figure in a visible way.</p></article>
+  <article><h3>Shared transport beats a better private vehicle.</h3><p>Per kilometre, buses and trains emit a fraction of what a car does when you travel the same distance.</p></article>
+</section>
+</main>
+
+<footer>
+  <h2>Find your number, then decide what to change.</h2>
+  <a class="btn light" href="#calculator">Estimate mine</a>
+  <p>CarbonSense is a college project. Estimates are indicative, not certified measurements.</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
